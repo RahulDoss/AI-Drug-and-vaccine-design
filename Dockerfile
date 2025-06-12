@@ -1,4 +1,4 @@
-# Use an official Python runtime as a parent image
+# Use official lightweight Python image
 FROM python:3.11-slim
 
 # Set environment variables
@@ -12,11 +12,11 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Copy project files into the container
+# Copy source code
 COPY . .
 
-# Expose the port the app runs on
+# Expose FastAPI port
 EXPOSE 8000
 
-# Start the FastAPI app with Uvicorn
+# Run FastAPI app with uvicorn
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
